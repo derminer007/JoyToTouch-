@@ -49,15 +49,40 @@ int main(int argc, char** argv) {		// Subsystem Console in Linker/System aktivie
 			while (SDL_PollEvent(&event)) {
 
 				printf("%d\n", event.type);
+				printf("Axis: %d\n", event.caxis.axis);
 
-				/*switch (event.type) {
+				switch (event.type) {
 				case SDL_KEYDOWN:
 					printf("Reached\n");
+					break;
+				case SDL_JOYAXISMOTION:
+					if ((event.caxis.value < -3200) || (event.caxis.value > 3200)) {
+						if (event.caxis.axis == 0) {	// Linker Analogstick: links-rechts
+							printf("0: %d\n", event.caxis.value);
+						}
+						if (event.caxis.axis == 1) {	// Linker Analogstick: oben-unten
+							printf("1: %d\n", event.caxis.value);
+						}
+
+						if (event.caxis.axis == 2) {	// Rechter Analogstick: links-rechts
+							printf("2: %d\n", event.caxis.value);
+						}
+						if (event.caxis.axis == 3) {	// Rechter Analogstick: oben-unten
+							printf("3: %d\n", event.caxis.value);
+						}
+
+						if (event.caxis.axis == 4) {	// L-Trigger
+							printf("4: %d\n", event.caxis.value);
+						}
+						if (event.caxis.axis == 5) {	// R-Trigger
+							printf("5: %d\n", event.caxis.value);
+						}
+					}
 					break;
 				case SDL_CONTROLLERBUTTONDOWN:
 					printf("BDown\n");
 					break;
-				}*/
+				}
 			}
 		}
 	}
