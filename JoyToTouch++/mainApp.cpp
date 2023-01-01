@@ -49,14 +49,15 @@ int main(int argc, char** argv) {		// Subsystem Console in Linker/System aktivie
 			while (SDL_PollEvent(&event)) {
 
 				printf("%d\n", event.type);
-				printf("Axis: %d\n", event.caxis.axis);
+				printf("%d\n", SDL_JOYBUTTONDOWN);
+				//printf("Axis: %d\n", event.caxis.axis);
 
 				switch (event.type) {
 				case SDL_KEYDOWN:
 					printf("Reached\n");
 					break;
 				case SDL_JOYAXISMOTION:
-					if ((event.caxis.value < -3200) || (event.caxis.value > 3200)) {
+					if ((event.caxis.value > 20000)) {
 						if (event.caxis.axis == 0) {	// Linker Analogstick: links-rechts
 							printf("0: %d\n", event.caxis.value);
 						}
@@ -79,8 +80,11 @@ int main(int argc, char** argv) {		// Subsystem Console in Linker/System aktivie
 						}
 					}
 					break;
-				case SDL_CONTROLLERBUTTONDOWN:
+				case SDL_JOYBUTTONDOWN:
 					printf("BDown\n");
+					break;
+				case SDL_JOYBUTTONUP:
+					printf("BUP\n");
 					break;
 				}
 			}
