@@ -81,10 +81,10 @@ int main(int argc, char** argv) {		// Subsystem Console in Linker/System aktivie
 					}
 					break;
 				case SDL_JOYBUTTONDOWN:
-					printf("BDown\n");
+					printf("BDown Button: %d\n", event.jbutton.button);
 					break;
 				case SDL_JOYBUTTONUP:
-					printf("BUP\n");
+					printf("BUP Button: %d\n", event.jbutton.button);
 					break;
 				}
 			}
